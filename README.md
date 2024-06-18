@@ -49,7 +49,7 @@ StrideSync is a comprehensive platform designed for coaches to create and manage
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/stridesync.git
+   git clone https://github.com/ethanyanyan/stride-sync.git
    cd stridesync
 
 2. Install Go dependencies:
