@@ -1,0 +1,18 @@
+/* src/pages/Onboarding.module.css */
+.formContainer {
+  max-width: 480px;
+  margin: var(--spacing-lg) auto;
+  padding: var(--spacing-lg);
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.title {
+  margin-bottom: var(--spacing);
+  text-align: center;
+  color: var(--color-primary);
+}
+.submitButton {
+  width: 100%;
+  margin-top: var(--spacing);
+}

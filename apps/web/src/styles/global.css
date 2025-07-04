@@ -1,0 +1,23 @@
+@import "./variables.css";
+
+/* Reset + base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#root {
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Utility classes you’ll use everywhere */
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
