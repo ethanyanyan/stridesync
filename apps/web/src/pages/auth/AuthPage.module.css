@@ -1,0 +1,16 @@
+/* src/pages/AuthPage.module.css */
+.authContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+}
+.card {
+  max-width: 400px;
+  width: 100%;
+  padding: var(--spacing-lg);
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
