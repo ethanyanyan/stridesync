@@ -1,14 +1,24 @@
+/* src/components/ui/Input/Input.module.css */
+.wrapper {
+  margin-bottom: var(--spacing);
+}
+.label {
+  display: block;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+}
 .input {
   width: 100%;
   padding: var(--spacing);
-  border: 1px solid #d1d5db; /* gray-300 */
+  border: 1px solid #d1d5db;
   border-radius: var(--radius);
-  font-size: 1rem;
-  margin-top: var(--spacing-sm);
-  margin-bottom: var(--spacing);
 }
 .input:focus {
-  outline: none;
   border-color: var(--color-primary-light);
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+.error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }

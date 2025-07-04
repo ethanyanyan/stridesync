@@ -1,14 +1,34 @@
-import React from 'react';
-import styles from './Button.module.css';
+// src/components/ui/Button/Button.tsx
+import React from 'react'
+import styles from './Button.module.css'
+import clsx from 'clsx'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'danger'
+export type ButtonSize = 'sm' | 'md' | 'lg'
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: ButtonVariant
+  size?: ButtonSize
 }
 
-export function Button({ children, ...props }: Readonly<ButtonProps>) {
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  className,
+  children,
+  ...props
+}: Readonly<ButtonProps>) {
   return (
-    <button className={styles.button} {...props}>
+    <button
+      className={clsx(
+        styles.button,
+        styles[`variant_${variant}`],
+        styles[`size_${size}`],
+        className
+      )}
+      {...props}
+    >
       {children}
     </button>
-  );
+  )
 }

@@ -1,17 +1,39 @@
+/* src/components/ui/Button/Button.module.css */
 .button {
-  padding: var(--spacing) var(--spacing-lg);
   border: none;
   border-radius: var(--radius);
-  background-color: var(--color-primary);
-  color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s;
 }
-.button:hover {
-  background-color: var(--color-primary-light);
+.size_sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
 }
-.button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.size_md {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+.size_lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+}
+
+.variant_primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.variant_secondary {
+  background: #fff;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+.variant_outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.variant_danger {
+  background: #dc2626;
+  color: #fff;
 }

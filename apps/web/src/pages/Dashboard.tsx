@@ -1,5 +1,5 @@
 // src/pages/Dashboard.tsx
-// Dashboard page: landing page after login/onboarding, fetches id for Profile
+// Dashboard page: landing page after login/onboarding, fetches profile with joined Role
 
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
@@ -11,21 +11,25 @@ export default function Dashboard() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const session = (await supabase.auth.getSession()).data.session
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
       if (!session) return
 
-      const { data, error } = await supabase
+      // no generics here to avoid deep-type recursion
+      const res = await supabase
         .from('profiles')
-        .select('id, full_name, role')
+        .select('id, full_name, role_id, roles(name)')
         .eq('id', session.user.id)
         .single()
 
-      if (error) {
-        console.error('Error fetching profile:', error.message)
+      if (res.error || !res.data) {
+        console.error('Error fetching profile:', res.error)
         return
       }
 
-      setProfile(data as Profile)
+      // cast to our Profile type
+      setProfile(res.data as unknown as Profile)
     }
 
     fetchProfile()
@@ -42,16 +46,23 @@ export default function Dashboard() {
       </h1>
 
       {profile && (
-        <nav style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-          {profile.role === 'admin' && <Link to="/admin/users">Manage Users</Link>}
-          {profile.role === 'coach' && <Link to="/coach/plans">Your Plans</Link>}
-          {profile.role === 'athlete' && <Link to="/athlete/plans">Your Plans</Link>}
+        <nav
+          style={{
+            marginTop: '1.5rem',
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1rem',
+          }}
+        >
+          {profile.roles.name === 'admin' && <Link to="/admin/users">Manage Users</Link>}
+          {profile.roles.name === 'coach' && <Link to="/coach/plans">Your Plans</Link>}
+          {profile.roles.name === 'athlete' && <Link to="/athlete/plans">Your Plans</Link>}
         </nav>
       )}
 
-      <Button onClick={handleSignOut} style={{ marginTop: '2rem' }}>
+      <button onClick={handleSignOut} style={{ marginTop: '2rem' }}>
         Sign out
-      </Button>
+      </button>
     </div>
   )
 }
